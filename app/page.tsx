@@ -12,7 +12,12 @@ export default function Home() {
           Contra Dance Weekend
         </p>
         <p className="text-lg mt-3">September 24-26, 2027</p>
-        <p className="text-sm text-foreground/60 mt-2">(Registration opens in 2027)</p>
+        <div className="mt-8">
+          <p className="text-base text-foreground/60">Registration opens in 2027</p>
+          <p className="text-base mt-2">
+            <InlineLink href="/updates" internal>Sign up to stay informed</InlineLink>
+          </p>
+        </div>
       </div>
 
       <figure className="relative w-full aspect-3/2 rounded-lg overflow-hidden mb-8">
