@@ -100,7 +100,9 @@ export default function Talent() {
             />
           </div>
           <p className="text-base leading-relaxed">
-            Coming soon...
+            Natterjack is a Seattle-based dance band featuring Hayden Stern on fiddle,
+            Ezra Jane Landsman on guitar and bouzouki, and Alex Sturbaum on button accordion, bouzouki, and bodhran.
+            The trio lay down a complex, layered soundscape, and can still go quite hard when the situation requires.
           </p>
         </div>
       </section>
