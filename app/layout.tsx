@@ -27,7 +27,7 @@ const themeScript = `
 `;
 
 export const metadata: Metadata = {
-  title: "Star Through",
+  title: "Star Through Seattle",
   description: "Star Through Seattle Contra Dance Camp",
 };
 

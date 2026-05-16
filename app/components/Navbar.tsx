@@ -7,8 +7,10 @@ import ThemeToggle from "./ThemeToggle";
 
 const links = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Talent", href: "/talent" },
+  // { label: "About", href: "/about" },
+  // { label: "Schedule", href: "/schedule" },
+  // { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -17,33 +19,30 @@ export default function Navbar() {
 
   return (
     <header className="border-b border-foreground/10">
-      <nav className="mx-auto max-w-5xl px-6 h-16 flex items-center justify-between">
+      <nav className="mx-auto max-w-5xl px-6 h-16 flex items-center justify-between md:grid md:grid-cols-3">
         <Link href="/" className="font-semibold text-lg tracking-tight">
-          Star Through
+          Star Through Seattle
         </Link>
 
-        <div className="flex items-center gap-2">
-          {/* Desktop links */}
-          <ul className="hidden md:flex gap-8 text-base">
-            {links.map(({ label, href }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className={`transition-opacity hover:opacity-100 ${
-                    pathname === href ? "opacity-100 font-medium" : "opacity-60"
-                  }`}
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        {/* Desktop links — centered */}
+        <ul className="hidden md:flex justify-center gap-8 text-base">
+          {links.map(({ label, href }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                className={`transition-opacity hover:opacity-100 ${
+                  pathname === href ? "opacity-100 font-medium" : "opacity-60"
+                }`}
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
 
-          <div className="md:ml-4">
-            <ThemeToggle />
-          </div>
-
-          {/* Mobile hamburger */}
+        {/* Right: theme toggle + mobile hamburger */}
+        <div className="flex items-center justify-end gap-2">
+          <ThemeToggle />
           <button
             className="md:hidden flex flex-col gap-1.5 p-1"
             onClick={() => setOpen((o) => !o)}

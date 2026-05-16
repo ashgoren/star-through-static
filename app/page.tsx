@@ -1,65 +1,109 @@
+// starthroughseattle.dance
 import Image from "next/image";
+import { PageTitle, SectionDivider, Paragraph, InlineLink } from "./components/ui";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <div className="max-w-2xl mx-auto px-4 py-8 sm:py-12">
+
+      <div className="text-center mb-8">
+        <PageTitle>Star Through Seattle</PageTitle>
+        <p className="text-xl font-semibold tracking-widest uppercase text-foreground/70 mt-3">
+          Contra Dance Weekend
+        </p>
+        <p className="text-lg mt-3">September 24-26, 2027</p>
+        <p className="text-sm text-foreground/60 mt-2">(Registration opens in 2027)</p>
+      </div>
+
+      <figure className="relative w-full aspect-3/2 rounded-lg overflow-hidden mb-8">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src="/dancers1.jpg"
+          alt="Dancers"
+          fill
+          className="object-cover"
           priority
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        {/* <figcaption className="absolute bottom-0 right-0 px-2 py-1 text-xs text-white/80 bg-black/30 rounded-tl-md">
+          <InlineLink href="https://www.facebook.com/JCsDancePhotography">
+            Photo: JC&rsquo;s Dance Photography
+          </InlineLink>
+        </figcaption> */}
+      </figure>
+
+      <Paragraph>
+        Star Through Seattle is a joyful, inclusive dance weekend where everyone feels at home on
+        the dance floor. We&rsquo;re held at the historic{" "}
+        <InlineLink href="https://washingtonhall.org/">Washington Hall</InlineLink>
+        {" "}(153 14th Ave, Seattle, WA 98122) — a venue that has been welcoming music and dancing
+        for over a century, in spaces operated by{" "}
+        <InlineLink href="https://www.206zulu.org/">206Zulu</InlineLink>.
+      </Paragraph>
+
+      <Paragraph>
+        Dance in the beautiful second-story ballroom, or head up to the third-floor balcony to grab
+        a snack, listen to live music, and watch the wonderful dancing below. And if you need to
+        slow down, the quiet room is always available for reading or resting.
+      </Paragraph>
+
+      <Paragraph>
+        Starting Friday evening, talented callers will bring joy and energy to every dance, guiding
+        you through each figure with traditional and contemporary contra music performed by amazing
+        live bands. Saturday and Sunday both open with a morning waltz, followed by fantastic
+        contras — including skill-focused dances and the always-popular marathon session. Between
+        dances, there&rsquo;s even more to enjoy: a community sing and a jam session!
+      </Paragraph>
+
+      <SectionDivider />
+
+      <div className="text-center space-y-3 text-lg">
+        <p className="text-base text-foreground/60">Gender neutral calling: Larks and Robins</p>
+        <p>
+          Calling by{" "}
+          <InlineLink href="/talent#caller1" internal>Will Mentor</InlineLink>
+          {" "}and{" "}
+          <InlineLink href="/talent#caller2" internal>Koren Wake</InlineLink>
+        </p>
+        <p>
+          Music by{" "}
+          <InlineLink href="/talent#band1" internal>Kingfisher</InlineLink>
+          {" "}and{" "}
+          <InlineLink href="/talent#band2" internal>Natterjack</InlineLink>
+        </p>
+      </div>
+
+      <SectionDivider />
+
+      <div className="space-y-3 text-sm text-foreground/70">
+        <p>Star Through Seattle is a fragrance free event.</p>
+        <p>
+          Star Through Seattle follows the mask guidelines of the weekly Seattle contras.
+          Currently, masks are not required. This is subject to change.
+        </p>
+        <p>
+          We ask everyone to take a Covid test on Friday, before arriving at the weekend.
+          Please do not attend if you are feeling unwell.
+        </p>
+      </div>
+
+      <SectionDivider />
+
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm text-foreground/60">
+        <p>
+          Photos by{" "}
+          <InlineLink href="https://www.facebook.com/JCsDancePhotography">
+            JC&rsquo;s Dance Photography
+          </InlineLink>
+        </p>
+        <InlineLink href="https://www.206zulu.org/">
+          <Image src="/206zulu.png"
+            alt=""
+            width={80}
+            height={56}
+            className="object-contain"
+          />
+        </InlineLink>
+      </div>
+
     </div>
   );
 }
