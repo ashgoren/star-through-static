@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* override what dark means to tailwind */
+@custom-variant dark (&:where([data-theme="dark"] *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -13,10 +16,20 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
 body {
