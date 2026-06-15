@@ -11,6 +11,10 @@ export default function Home() {
         <p className="text-xl font-semibold tracking-widest uppercase text-foreground/70 mt-3">
           Contra Dance Weekend
         </p>
+        <p className="text-base text-foreground/60 mt-1">
+          Sponsored by{" "}
+          <InlineLink href="https://www.seafolklore.org/">Seattle Folklore Society</InlineLink>
+        </p>
         <p className="text-lg mt-3">September 24-26, 2027</p>
         <div className="mt-8">
           <p className="text-base text-foreground/60">Registration opens in 2027</p>
@@ -99,14 +103,24 @@ export default function Home() {
             JC&rsquo;s Dance Photography
           </InlineLink>
         </p>
-        <InlineLink href="https://www.206zulu.org/">
-          <Image src="/206zulu.png"
-            alt=""
-            width={80}
-            height={56}
-            className="object-contain"
-          />
-        </InlineLink>
+        <div className="flex items-center gap-4">
+          <InlineLink href="https://www.seafolklore.org/">
+            <Image src="/sfs-logo.png"
+              alt=""
+              width={80}
+              height={56}
+              className="object-contain"
+            />
+          </InlineLink>
+          <InlineLink href="https://www.206zulu.org/">
+            <Image src="/206zulu.png"
+              alt=""
+              width={80}
+              height={56}
+              className="object-contain"
+            />
+          </InlineLink>
+        </div>
       </div>
 
     </div>
