@@ -29,6 +29,7 @@ export default function Home() {
           src="/dancers1.jpg"
           alt="Dancers"
           fill
+          sizes="(max-width: 42rem) calc(100vw - 2rem), 40rem"
           className="object-cover"
           priority
         />
@@ -107,7 +108,7 @@ export default function Home() {
           <InlineLink href="https://www.seafolklore.org/">
             <Image src="/sfs-logo.png"
               alt=""
-              width={80}
+              width={56}
               height={56}
               className="object-contain"
             />

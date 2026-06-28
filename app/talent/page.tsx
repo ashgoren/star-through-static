@@ -17,7 +17,7 @@ export default function Talent() {
               src="/willmentor.jpg"
               alt="Will Mentor"
               width={220}
-              height={200}
+              height={199}
               className="rounded-lg object-cover"
             />
           </div>
