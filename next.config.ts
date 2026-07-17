@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  transpilePackages: ["static-site-kit"],
   headers: async () => [
     {
       source: '/:path*',
