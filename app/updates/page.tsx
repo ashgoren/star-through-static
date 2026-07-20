@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { PageTitle, SectionDivider, Paragraph } from "../components/ui";
 import InterestForm from "./InterestForm";
+import { siteName, event } from "@/site.config";
+
+export const metadata: Metadata = {
+  title: "Stay Informed",
+  description: `Sign up to be notified when registration opens for ${siteName}, a contra dance weekend ${event.datesDisplay} in Seattle.`,
+};
 
 export default function Updates() {
   return (

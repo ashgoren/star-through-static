@@ -15,8 +15,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: siteName,
+  metadataBase: new URL(`https://${prodApex}`),
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
   description: siteDescription,
+  openGraph: {
+    title: siteName,
+    description: siteDescription,
+    url: "/",
+    siteName,
+    images: ["/dancers1.jpg"],
+    type: "website",
+  },
 };
 
 export default function RootLayout({

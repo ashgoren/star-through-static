@@ -1,5 +1,12 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import { PageTitle, SectionDivider, SectionHeader, InlineLink } from "../components/ui";
+
+export const metadata: Metadata = {
+  title: "Talent",
+  description:
+    "Meet the callers and bands at Star Through Seattle: callers Will Mentor and Koren Wake, with live contra dance music from Kingfisher and Natterjack.",
+};
 
 export default function Talent() {
   return (

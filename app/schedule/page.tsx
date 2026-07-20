@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { PageTitle, SectionDivider, SectionHeader, Paragraph } from "../components/ui";
+import { siteName, event } from "@/site.config";
+
+export const metadata: Metadata = {
+  title: "Schedule",
+  description: `Schedule for the ${siteName} contra dance weekend, ${event.datesDisplay} in Seattle.`,
+};
 
 export default function Schedule() {
   return (

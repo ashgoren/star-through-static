@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { PageTitle, SectionDivider, SectionHeader, Paragraph, InlineLink } from "../components/ui";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Code of conduct, health and safety guidelines, refund policy, and housing info for the Star Through Seattle contra dance weekend.",
+};
 
 export default function About() {
   return (

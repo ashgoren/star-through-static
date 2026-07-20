@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { PageTitle, SectionDivider, Paragraph, InlineLink } from "../components/ui";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Contact the organizers of Star Through Seattle, a new Fall contra dance weekend in Seattle.",
+};
 
 export default function Contact() {
   return (

@@ -1,10 +1,41 @@
 // starthroughseattle.dance
 import Image from "next/image";
 import { PageTitle, SectionDivider, Paragraph, InlineLink } from "./components/ui";
+import { siteName, prodApex, event } from "@/site.config";
+
+const eventJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: siteName,
+  description: event.description,
+  startDate: event.startDate,
+  endDate: event.endDate,
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  location: {
+    "@type": "Place",
+    name: event.venue.name,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: event.venue.street,
+      addressLocality: event.venue.city,
+      addressRegion: event.venue.state,
+      postalCode: event.venue.zip,
+      addressCountry: "US",
+    },
+  },
+  image: [`https://${prodApex}/dancers1.jpg`],
+  url: `https://${prodApex}`,
+};
 
 export default function Home() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-8 sm:py-12">
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
+      />
 
       <div className="text-center mb-8">
         <PageTitle>Star Through Seattle</PageTitle>
@@ -15,7 +46,7 @@ export default function Home() {
           Sponsored by{" "}
           <InlineLink href="https://www.seafolklore.org/">Seattle Folklore Society</InlineLink>
         </p>
-        <p className="text-lg mt-3">September 24-26, 2027</p>
+        <p className="text-lg mt-3">{event.datesDisplay}</p>
         <div className="mt-8">
           <p className="text-base text-foreground/60">Registration opens in 2027</p>
           <p className="text-base mt-2">
@@ -43,8 +74,8 @@ export default function Home() {
       <Paragraph>
         Star Through Seattle is a joyful, inclusive dance weekend where everyone feels at home on
         the dance floor. We&rsquo;re held at the historic{" "}
-        <InlineLink href="https://washingtonhall.org/">Washington Hall</InlineLink>
-        {" "}(153 14th Ave, Seattle, WA 98122) — a venue that has been welcoming music and dancing
+        <InlineLink href={event.venue.website}>{event.venue.name}</InlineLink>
+        {" "}({event.venue.street}, {event.venue.city}, {event.venue.state} {event.venue.zip}) — a venue that has been welcoming music and dancing
         for over a century, in spaces operated by{" "}
         <InlineLink href="https://www.206zulu.org/">206Zulu</InlineLink>.
       </Paragraph>
