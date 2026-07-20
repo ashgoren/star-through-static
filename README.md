@@ -1,4 +1,4 @@
-This is a (mostly) static site for a dance event. It's built with the Next.js App Router, Tailwind v4, TypeScript, and my [static-site-kit](https://github.com/ashgoren/static-site-kit) shared package.
+This is a (mostly) static info site for a dance event, with a small number of routes accessible from the navbar. It's built with the Next.js App Router, Tailwind v4, TypeScript, and my [static-site-kit](https://github.com/ashgoren/static-site-kit) shared package.
 
 ## Getting Started
 
