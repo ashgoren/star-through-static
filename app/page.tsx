@@ -1,4 +1,3 @@
-// starthroughseattle.dance
 import Image from "next/image";
 import { PageTitle, SectionDivider, Paragraph, InlineLink } from "./components/ui";
 import { siteName, prodApex, shareImage, event } from "@/site.config";
