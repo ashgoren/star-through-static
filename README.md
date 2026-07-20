@@ -1,11 +1,37 @@
-This is a (mostly) static site for a dance weekend. It's built with the Next.js App Router, Tailwind v4, TypeScript, and my [static-site-kit](https://github.com/ashgoren/static-site-kit) shared package.
+This is a (mostly) static site for a dance event. It's built with the Next.js App Router, Tailwind v4, TypeScript, and my [static-site-kit](https://github.com/ashgoren/static-site-kit) shared package.
 
-## Dev server (runs on localhost:3000)
+## Getting Started
+
+Install dependencies, then run the development server:
 
 ```bash
 npm install
 npm run dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) to see the result.
+
+## Commands
+
+```bash
+npm run dev      # development server (port 3000)
+npm run build    # production build
+npm run start    # start production server
+npm run lint     # ESLint
+npm run tsc      # TypeScript type-check
+```
+
+## Architecture
+
+- All routes live under `app/`, using the Next.js App Router. The `@/*` path alias maps to the project root.
+- **Tailwind CSS v4** — uses `@import "tailwindcss"` syntax and `@tailwindcss/postcss`. Theme is configured via `@theme inline` in `globals.css`, not `tailwind.config.js`.
+- **React Compiler** — enabled in `next.config.ts` via `reactCompiler: true`, so manual `useMemo`/`useCallback` are unnecessary.
+- **ESLint v9 flat config** — see `eslint.config.mjs`.
+- **Dark mode** — controlled via a `data-theme` attribute on `<html>`, toggled by `ThemeToggle` (from `static-site-kit`), which persists the choice to a `theme` cookie rather than localStorage — a cookie can be scoped to a domain, so the choice can stay in sync with a registration app or other subdomain on the same parent domain. `ThemeScript` (also from `static-site-kit`) sets `data-theme` before first paint to prevent a flash of the wrong theme.
+- **UI primitives** — `app/components/ui.tsx`.
+- **Icons** — [lucide-react](https://lucide.dev).
+
+Pages are server components by default; only components that need interactivity (e.g. the navbar's mobile drawer, the theme toggle, the "stay informed" signup form) are client components.
 
 ## Site configuration
 
@@ -18,11 +44,10 @@ npm run dev
 - `prodApex` - production domain, used to scope the theme cookie and build the sitemap/OG URLs
 - `previewHost` - the Vercel-assigned preview deployment domain, used by `next.config.ts` to `noindex` the preview
 
-Note that `app/layout.tsx`, `app/page.tsx`, `app/sitemap.ts`, and `next.config.ts` all read from it rather than hardcoding these values.
+Note that `app/layout.tsx`, `app/page.tsx`, `app/sitemap.ts`, `app/robots.ts`, and `next.config.ts` all read from it rather than hardcoding these values.
 
 **`app/globals.css`**:
 - The palette lives in `:root` as named `-light`/`-dark` variables (`--background-light`, `--foreground-light`, `--accent-light`, and their `-dark` counterparts) — change a color once there and every contextual block (media-query fallback, `[data-theme="light"]`, `[data-theme="dark"]`) picks it up, since they all just reference the named variable rather than repeating hex codes. A new event will most likely want its own `--accent-*` at minimum.
-- This can't be centralized into `site.config.ts` — plain CSS has no mechanism to import a `.ts` file (`@import` only resolves other CSS). Piping it through anyway would mean generating CSS from JS at build time or runtime, which is more moving parts than six hex codes are worth, and would fight `CLAUDE.md`'s documented decision that theming lives in `globals.css` via Tailwind's `@theme inline`, not JS.
 
 **`package.json`**:
 — `name` field
@@ -36,12 +61,10 @@ Note that `app/layout.tsx`, `app/page.tsx`, `app/sitemap.ts`, and `next.config.t
 - The share image referenced by `shareImage` in `site.config.ts`
 - All other photos in `public/`
 
-**Secrets/infra (outside the repo):**
-- `.env.local` — `GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SPREADSHEET_ID` (used by `app/actions/submitInterest.ts` for the "stay informed" signup form). Easy to forget, and the failure mode is bad: forgetting to update `GOOGLE_SPREADSHEET_ID` means the new site's signups silently land in the old event's spreadsheet.
-- A new Vercel project, custom domain + DNS, and the same env vars re-entered in the Vercel dashboard.
-- Once live: verify the domain in Google Search Console and submit `https://<domain>/sitemap.xml` to immediately trigger indexing.
+**Secrets:**
+- `.env.local` — `GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SPREADSHEET_ID` (used by the "stay informed" signup form)
 
-## Shared UI (static-site-kit)
+## Shared Navbar/Theme (static-site-kit)
 
 `Navbar` and `ThemeToggle`/`ThemeScript` used in `app/layout.tsx` aren't local to this repo — they come from [`static-site-kit`](https://github.com/ashgoren/static-site-kit), a private shared package used across several similar static event sites, installed as a pinned git-tag dependency (`"static-site-kit": "github:ashgoren/static-site-kit#vX.Y.Z"` in `package.json`).
 
@@ -56,3 +79,11 @@ For how to make changes to the shared package itself, test them locally against 
 This site previously had no accent color at all (only `--background`/`--foreground`), since the shared `Navbar` styles its header border/background and active-link state via `accent`-based Tailwind classes, a violet `--accent` token (`#7c3aed` light / `#a78bfa` dark) was added to `globals.css` to support it.
 
 Typography/layout primitives (`PageTitle`, `SectionHeader`, `Paragraph`, `SectionDivider`, `InlineLink`) live locally instead, in `app/components/ui.tsx`, since they're bespoke to this site and change independently of the shared nav/theme pieces.
+
+## Deployment
+
+Deployed on [Vercel](https://vercel.com) with a custom domain.
+
+When copying this site for a new event: create a new Vercel project, connect the repo, and set up the custom domain + DNS. Re-enter the secrets above in the Vercel dashboard's environment variables. Once the project exists, grab its auto-assigned `*.vercel.app` preview URL and set it as `previewHost` in `site.config.ts`.
+
+After the custom domain is set up, verify the domain in Google Search Console and submit `https://<domain>/sitemap.xml` to immediately trigger indexing.
