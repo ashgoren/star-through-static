@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { previewHost } from "./site.config";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
@@ -6,7 +7,7 @@ const nextConfig: NextConfig = {
   headers: async () => [
     {
       source: '/:path*',
-      has: [{ type: 'host', value: 'star-through-static.vercel.app' }],
+      has: [{ type: 'host', value: previewHost }],
       headers: [{ key: 'X-Robots-Tag', value: 'noindex' }]
     }
   ]

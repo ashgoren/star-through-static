@@ -1,7 +1,7 @@
 // starthroughseattle.dance
 import Image from "next/image";
 import { PageTitle, SectionDivider, Paragraph, InlineLink } from "./components/ui";
-import { siteName, prodApex, event } from "@/site.config";
+import { siteName, prodApex, shareImage, event } from "@/site.config";
 
 const eventJsonLd = {
   "@context": "https://schema.org",
@@ -24,7 +24,7 @@ const eventJsonLd = {
       addressCountry: "US",
     },
   },
-  image: [`https://${prodApex}/dancers1.jpg`],
+  image: [`https://${prodApex}${shareImage}`],
   url: `https://${prodApex}`,
 };
 

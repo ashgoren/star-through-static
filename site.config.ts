@@ -4,6 +4,13 @@ export const siteDescription = "Star Through Seattle Contra Dance Camp";
 // Production TLD (scopes theme cookie to sync theme between TLD & registration subdomain)
 export const prodApex = "starthroughseattle.dance";
 
+// Vercel-assigned preview deployment domain (differs per Vercel project) — used to
+// noindex the preview in next.config.ts so it doesn't compete with prodApex in search
+export const previewHost = "star-through-static.vercel.app";
+
+// Default social-share / OG image, also reused as the homepage's JSON-LD event image
+export const shareImage = "/dancers1.jpg";
+
 export const event = {
   // Can be longer than siteDescription; feeds JSON-LD for Google rich results
   description: "Star Through Seattle is a new Fall contra dance weekend held in Seattle, featuring calling by Will Mentor and Koren Wake with live music from Kingfisher and Natterjack.",
