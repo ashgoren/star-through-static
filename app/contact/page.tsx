@@ -3,7 +3,6 @@ import { PageTitle, SectionDivider, Paragraph, InlineLink } from "../components/
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contact the organizers of Star Through Seattle, a new Fall contra dance weekend in Seattle.",
 };
 
 export default function Contact() {

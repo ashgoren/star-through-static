@@ -3,8 +3,6 @@ import { PageTitle, SectionDivider, SectionHeader, Paragraph, InlineLink } from 
 
 export const metadata: Metadata = {
   title: "About",
-  description:
-    "Code of conduct, health and safety guidelines, refund policy, and housing info for the Star Through Seattle contra dance weekend.",
 };
 
 export default function About() {
