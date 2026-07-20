@@ -5,45 +5,59 @@
    package there now, not local app/ source. */
 @source "../node_modules/static-site-kit/src";
 
-/* override what dark means to tailwind */
-@custom-variant dark (&:where([data-theme="dark"] *));
+/* override what dark means to tailwind for overriding the default dark: variant */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --accent: #7c3aed;
+  /* palette */
+  --background-light: #ffffff;
+  --foreground-light: #171717;
+  --accent-light: #7c3aed;
+  --background-dark: #0a0a0a;
+  --foreground-dark: #ededed;
+  --accent-dark: #a78bfa;
+
+  /* auto-detected light mode (fallback) */
+  --background: var(--background-light);
+  --foreground: var(--foreground-light);
+  --accent: var(--accent-light);
 }
 
+/* auto-detected dark mode */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --background: var(--background-dark);
+    --foreground: var(--foreground-dark);
+    --accent: var(--accent-dark);
+  }
+}
+
+/* user-selected light mode */
+[data-theme="light"] {
+  --background: var(--background-light);
+  --foreground: var(--foreground-light);
+  --accent: var(--accent-light);
+}
+
+/* user-selected dark mode */
+[data-theme="dark"] {
+  --background: var(--background-dark);
+  --foreground: var(--foreground-dark);
+  --accent: var(--accent-dark);
+}
+
+/* base styles */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* tailwind tokens */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --accent: #a78bfa;
-  }
-}
-
-[data-theme="dark"] {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --accent: #a78bfa;
-}
-
-[data-theme="light"] {
-  --background: #ffffff;
-  --foreground: #171717;
-  --accent: #7c3aed;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
