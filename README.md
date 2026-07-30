@@ -41,7 +41,8 @@ Pages are server components by default; only components that need interactivity 
 - `shareImage` - default OG/social-share image
 - `event` - description/dates/venue — feeds the homepage's JSON-LD
 - `links` - navbar items (also drives the sitemap)
-- `prodApex` - production domain, used to scope the theme cookie and build the sitemap/OG URLs
+- `prodApex` - production apex domain, used to scope the theme cookie
+- `canonicalHost` - the host that actually serves the site (`www.` + `prodApex`, if Vercel redirects the apex to `www`), used to build the sitemap/OG/canonical URLs
 - `previewHost` - the Vercel-assigned preview deployment domain, used by `next.config.ts` to `noindex` the preview
 
 Note that `app/layout.tsx`, `app/page.tsx`, `app/sitemap.ts`, `app/robots.ts`, and `next.config.ts` all read from it rather than hardcoding these values.
@@ -84,6 +85,6 @@ Typography/layout primitives (`PageTitle`, `SectionHeader`, `Paragraph`, `Sectio
 
 Deployed on [Vercel](https://vercel.com) with a custom domain.
 
-When copying this site for a new event: create a new Vercel project, connect the repo, and set up the custom domain + DNS. Re-enter the secrets above in the Vercel dashboard's environment variables. Once the project exists, grab its auto-assigned `*.vercel.app` preview URL and set it as `previewHost` in `site.config.ts`.
+When copying this site for a new event: create a new Vercel project, connect the repo, and set up the custom domain + DNS. Re-enter the secrets above in the Vercel dashboard's environment variables. Once the project exists, grab its auto-assigned `*.vercel.app` preview URL and set it as `previewHost` in `site.config.ts`. Check whether Vercel serves the site on the bare apex or redirects it to `www`, and set `canonicalHost` in `site.config.ts` to whichever host is actually served — otherwise canonical/OG/sitemap URLs will point to a redirecting URL instead of the final one.
 
 After the custom domain is set up, verify the domain in Google Search Console and submit `https://<domain>/sitemap.xml` to immediately trigger indexing.

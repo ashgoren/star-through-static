@@ -4,6 +4,10 @@ export const siteDescription = "Star Through Seattle Contra Dance Camp";
 // Production TLD (scopes theme cookie to sync theme between TLD & registration subdomain)
 export const prodApex = "starthroughseattle.dance";
 
+// Canonical host actually serving the site (Vercel redirects the apex here) —
+// used for canonical/OG URLs, JSON-LD, sitemap, and robots.txt's sitemap link
+export const canonicalHost = `www.${prodApex}`;
+
 // Vercel-assigned preview deployment domain (differs per Vercel project) — used to
 // noindex the preview in next.config.ts so it doesn't compete with prodApex in search
 export const previewHost = "star-through-static.vercel.app";

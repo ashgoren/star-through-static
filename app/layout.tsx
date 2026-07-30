@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar, ThemeScript } from "static-site-kit";
-import { siteName, siteDescription, links, prodApex, shareImage } from "@/site.config";
+import { siteName, siteDescription, links, prodApex, canonicalHost, shareImage } from "@/site.config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(`https://${prodApex}`),
+  metadataBase: new URL(`https://${canonicalHost}`),
   title: {
     default: siteName,
     template: `%s | ${siteName}`,

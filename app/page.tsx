@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { PageTitle, SectionDivider, Paragraph, InlineLink } from "./components/ui";
-import { siteName, prodApex, shareImage, event } from "@/site.config";
+import { siteName, canonicalHost, shareImage, event } from "@/site.config";
 
 const eventJsonLd = {
   "@context": "https://schema.org",
@@ -23,8 +23,8 @@ const eventJsonLd = {
       addressCountry: "US",
     },
   },
-  image: [`https://${prodApex}${shareImage}`],
-  url: `https://${prodApex}`,
+  image: [`https://${canonicalHost}${shareImage}`],
+  url: `https://${canonicalHost}`,
 };
 
 export default function Home() {
