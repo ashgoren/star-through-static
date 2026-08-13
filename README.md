@@ -33,7 +33,35 @@ npm run tsc      # TypeScript type-check
 
 Pages are server components by default; only components that need interactivity (e.g. the navbar's mobile drawer, the theme toggle, the "stay informed" signup form) are client components.
 
-## Site configuration
+## Shared Navbar/Theme (static-site-kit)
+
+`Navbar` and `ThemeToggle`/`ThemeScript` used in `app/layout.tsx` aren't local to this repo — they come from [`static-site-kit`](https://github.com/ashgoren/static-site-kit), a private shared package used across several similar static event sites, installed as a pinned git-tag dependency (`"static-site-kit": "github:ashgoren/static-site-kit#vX.Y.Z"` in `package.json`).
+
+Two things specific to consuming it here:
+- `transpilePackages: ["static-site-kit"]` in `next.config.ts` — the package ships raw, unbuilt TS/TSX source, so Next.js compiles it the same way it compiles local code.
+- `@source "../node_modules/static-site-kit/src";` in `globals.css` — Tailwind v4 excludes `node_modules` from its default content scan, so without this, classes used only inside the package's components wouldn't generate any CSS.
+
+For how to make changes to the shared package itself, test them locally against a sibling checkout, and cut a new release, see `static-site-kit`'s own README.
+
+`layout.tsx` passes `centerLinksOnPage` to `Navbar`, so the 3 nav links center on the full header width — matching the page content centered below — instead of `Navbar`'s default of centering in the space between the title and controls. That default suits sites with a longer title or more/longer links, where true page-centering risks overlapping one side or the other; this site's short link list has no such risk.
+
+This site previously had no accent color at all (only `--background`/`--foreground`), since the shared `Navbar` styles its header border/background and active-link state via `accent`-based Tailwind classes, a violet `--accent` token (`#7c3aed` light / `#a78bfa` dark) was added to `globals.css` to support it.
+
+Typography/layout primitives (`PageTitle`, `SectionHeader`, `Paragraph`, `SectionDivider`, `InlineLink`) live locally instead, in `app/components/ui.tsx`, since they're bespoke to this site and change independently of the shared nav/theme pieces.
+
+## Deployment
+
+Deployed on [Vercel](https://vercel.com) with a custom domain.
+
+## Using as a Template
+
+[Generate a new repo from this template](https://github.com/ashgoren/star-through-static/generate) (requires this repo to have "Template repository" enabled in Settings).
+
+When copying this site for a new event: create a new Vercel project, connect the repo, and set up the custom domain + DNS. Re-enter the secrets above in the Vercel dashboard's environment variables. Once the project exists, grab its auto-assigned `*.vercel.app` preview URL and set it as `previewHost` in `site.config.ts`. Check whether Vercel serves the site on the bare apex or redirects it to `www`, and set `canonicalHost` in `site.config.ts` to whichever host is actually served — otherwise canonical/OG/sitemap URLs will point to a redirecting URL instead of the final one.
+
+After the custom domain is set up, verify the domain in Google Search Console and submit `https://<domain>/sitemap.xml` to immediately trigger indexing.
+
+### Site configuration
 
 **`site.config.ts`**:
 - `siteName` - title used in the navbar and page `<title>`
@@ -64,27 +92,3 @@ Note that `app/layout.tsx`, `app/page.tsx`, `app/sitemap.ts`, `app/robots.ts`, a
 
 **Secrets:**
 - `.env.local` — `GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SPREADSHEET_ID` (used by the "stay informed" signup form)
-
-## Shared Navbar/Theme (static-site-kit)
-
-`Navbar` and `ThemeToggle`/`ThemeScript` used in `app/layout.tsx` aren't local to this repo — they come from [`static-site-kit`](https://github.com/ashgoren/static-site-kit), a private shared package used across several similar static event sites, installed as a pinned git-tag dependency (`"static-site-kit": "github:ashgoren/static-site-kit#vX.Y.Z"` in `package.json`).
-
-Two things specific to consuming it here:
-- `transpilePackages: ["static-site-kit"]` in `next.config.ts` — the package ships raw, unbuilt TS/TSX source, so Next.js compiles it the same way it compiles local code.
-- `@source "../node_modules/static-site-kit/src";` in `globals.css` — Tailwind v4 excludes `node_modules` from its default content scan, so without this, classes used only inside the package's components wouldn't generate any CSS.
-
-For how to make changes to the shared package itself, test them locally against a sibling checkout, and cut a new release, see `static-site-kit`'s own README.
-
-`layout.tsx` passes `centerLinksOnPage` to `Navbar`, so the 3 nav links center on the full header width — matching the page content centered below — instead of `Navbar`'s default of centering in the space between the title and controls. That default suits sites with a longer title or more/longer links, where true page-centering risks overlapping one side or the other; this site's short link list has no such risk.
-
-This site previously had no accent color at all (only `--background`/`--foreground`), since the shared `Navbar` styles its header border/background and active-link state via `accent`-based Tailwind classes, a violet `--accent` token (`#7c3aed` light / `#a78bfa` dark) was added to `globals.css` to support it.
-
-Typography/layout primitives (`PageTitle`, `SectionHeader`, `Paragraph`, `SectionDivider`, `InlineLink`) live locally instead, in `app/components/ui.tsx`, since they're bespoke to this site and change independently of the shared nav/theme pieces.
-
-## Deployment
-
-Deployed on [Vercel](https://vercel.com) with a custom domain.
-
-When copying this site for a new event: create a new Vercel project, connect the repo, and set up the custom domain + DNS. Re-enter the secrets above in the Vercel dashboard's environment variables. Once the project exists, grab its auto-assigned `*.vercel.app` preview URL and set it as `previewHost` in `site.config.ts`. Check whether Vercel serves the site on the bare apex or redirects it to `www`, and set `canonicalHost` in `site.config.ts` to whichever host is actually served — otherwise canonical/OG/sitemap URLs will point to a redirecting URL instead of the final one.
-
-After the custom domain is set up, verify the domain in Google Search Console and submit `https://<domain>/sitemap.xml` to immediately trigger indexing.
