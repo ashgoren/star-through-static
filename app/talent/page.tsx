@@ -16,8 +16,8 @@ export default function Talent() {
 
       <section>
         <SectionHeader id="caller1">Calling by <em><InlineLink href="https://camp.cdss.org/staff/will-mentor">Will Mentor</InlineLink></em></SectionHeader>
-        <div className="flex flex-col sm:flex-row gap-5 mt-3">
-          <div className="shrink-0 mx-auto sm:mx-0">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-5 mt-3">
+          <div className="shrink-0">
             <Image
               src="/willmentor.jpg"
               alt="Will Mentor"
@@ -40,8 +40,8 @@ export default function Talent() {
         <SectionHeader id="caller2">
           Calling by <em><InlineLink href="https://www.korenwake.com">Koren Wake</InlineLink></em>
         </SectionHeader>
-        <div className="flex flex-col sm:flex-row-reverse gap-5 mt-3">
-          <div className="shrink-0 mx-auto sm:mx-0">
+        <div className="flex flex-col sm:flex-row-reverse sm:items-center gap-5 mt-3">
+          <div className="shrink-0">
             <Image
               src="/korenwake.jpg"
               alt="Koren Wake"
@@ -70,8 +70,8 @@ export default function Talent() {
         <SectionHeader id="band1">
           Music by <em><InlineLink href="https://kingfisherband.com">Kingfisher</InlineLink></em>
         </SectionHeader>
-        <div className="flex flex-col sm:flex-row gap-5 mt-3">
-          <div className="shrink-0 mx-auto sm:mx-0">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-5 mt-3">
+          <div className="shrink-0">
             <Image
               src="/kingfisher.jpg"
               alt="Kingfisher"
@@ -94,8 +94,8 @@ export default function Talent() {
         <SectionHeader id="band2">
           Music by <em><InlineLink href="https://natterjacked.bandcamp.com">Natterjack</InlineLink></em>
         </SectionHeader>
-        <div className="flex flex-col sm:flex-row-reverse gap-5 mt-3">
-          <div className="shrink-0 mx-auto sm:mx-0">
+        <div className="flex flex-col sm:flex-row-reverse sm:items-center gap-5 mt-3">
+          <div className="shrink-0">
             <Image
               src="/natterjack.jpg"
               alt="Natterjack"
