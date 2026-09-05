@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
-import { canonicalHost, links } from "@/site.config";
+import { canonicalHost } from "@/site.config";
+import { routableHrefs } from "@/lib/routing";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = `https://${canonicalHost}`;
-  return links.map(({ href }) => ({ url: `${base}${href}` }));
+  return [...routableHrefs].map((href) => ({ url: `${base}${href}` }));
 }

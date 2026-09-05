@@ -1,3 +1,5 @@
+import type { NavLink } from "static-site-kit";
+
 export const siteName = "Star Through Seattle";
 export const siteDescription = "Star Through Seattle Contra Dance Camp";
 
@@ -31,7 +33,9 @@ export const event = {
   },
 };
 
-export const links = [
+// Single source of truth for routing, sitemap, and navbar links.
+// Root route is always routable regardless of whether it's linked in the navbar.
+export const links: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Talent", href: "/talent" },
   { label: "Stay Informed", href: "/updates" },
