@@ -2,6 +2,7 @@ import type { NavLink } from "static-site-kit";
 
 export const siteName = "Star Through Seattle";
 export const siteDescription = "Star Through Seattle Contra Dance Camp";
+export const contactEmail = "info@starthroughseattle.dance";
 
 // Production TLD (scopes theme cookie to sync theme between TLD & registration subdomain)
 export const prodApex = "starthroughseattle.dance";

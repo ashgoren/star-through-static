@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { PageTitle, SectionDivider, Paragraph, InlineLink } from "./components/ui";
-import { siteName, canonicalHost, shareImage, event } from "@/site.config";
+import { siteName, canonicalHost, shareImage, event, contactEmail } from "@/site.config";
 
 const eventJsonLd = {
   "@context": "https://schema.org",
@@ -128,12 +128,18 @@ export default function Home() {
       <SectionDivider />
 
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm text-foreground/60">
-        <p>
-          Photos by{" "}
-          <InlineLink href="https://www.facebook.com/JCsDancePhotography">
-            JC&rsquo;s Dance Photography
-          </InlineLink>
-        </p>
+        <div className="space-y-1">
+          <p>
+            Photos by{" "}
+            <InlineLink href="https://www.facebook.com/JCsDancePhotography">
+              JC&rsquo;s Dance Photography
+            </InlineLink>
+          </p>
+          <p>
+            Questions?{" "}
+            <InlineLink href={`mailto:${contactEmail}`}>{contactEmail}</InlineLink>
+          </p>
+        </div>
         <div className="flex items-center gap-4">
           <InlineLink href="https://www.seafolklore.org/">
             <Image src="/sfs-logo.png"

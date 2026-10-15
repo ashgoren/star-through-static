@@ -32,6 +32,9 @@ export function InlineLink({ href, internal = false, children }: {
   if (internal) {
     return <Link href={href} className={cls}>{children}</Link>;
   }
+  if (href.startsWith("mailto:")) {
+    return <a href={href} className={cls}>{children}</a>;
+  }
   return (
     <a href={href} target="_blank" rel="noreferrer" className={cls}>
       {children}

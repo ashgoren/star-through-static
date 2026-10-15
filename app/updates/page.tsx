@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { PageTitle, SectionDivider, Paragraph } from "../components/ui";
+import { PageTitle, SectionDivider, Paragraph, InlineLink } from "../components/ui";
 import InterestForm from "./InterestForm";
+import { contactEmail } from "@/site.config";
 
 export const metadata: Metadata = {
   title: "Updates",
@@ -17,6 +18,11 @@ export default function Updates() {
       <div className="mt-6">
         <InterestForm />
       </div>
+      <SectionDivider />
+      <p className="text-sm text-foreground/60">
+        Questions?{" "}
+        <InlineLink href={`mailto:${contactEmail}`}>{contactEmail}</InlineLink>
+      </p>
     </div>
   );
 }
